@@ -1,8 +1,5 @@
-@import "tailwindcss" source(none);
-@source "../src";
+@import "tailwindcss";
 @import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -149,7 +146,11 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  h1, h2, h3, h4, h5 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
@@ -175,7 +176,8 @@
 }
 
 @utility glow-primary {
-  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 30%, transparent),
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--primary) 30%, transparent),
     0 12px 40px -12px color-mix(in oklab, var(--primary) 45%, transparent);
 }
 
@@ -189,6 +191,14 @@
 
 .bg-aura {
   background:
-    radial-gradient(60% 50% at 50% 0%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 70%),
-    radial-gradient(40% 40% at 85% 20%, color-mix(in oklab, var(--primary-glow) 14%, transparent), transparent 70%);
+    radial-gradient(
+      60% 50% at 50% 0%,
+      color-mix(in oklab, var(--primary) 22%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      40% 40% at 85% 20%,
+      color-mix(in oklab, var(--primary-glow) 14%, transparent),
+      transparent 70%
+    );
 }

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -11,7 +12,6 @@ import {
   Sparkles,
   Gauge,
   Globe,
-  Plus,
 } from "lucide-react";
 import { Toaster } from "@/components/ui/sonner";
 import {
@@ -174,7 +174,8 @@ export default function IndexPage() {
                 transition={{ delay: 0.1 }}
                 className="mt-5 max-w-lg text-lg text-muted-foreground"
               >
-                Plan pricing, forecast growth, optimize cloud costs, analyze unit economics, and make smarter financial decisions with AI.
+                Plan pricing, forecast growth, optimize cloud costs, analyze unit economics, and
+                make smarter financial decisions with AI.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
@@ -345,12 +346,12 @@ export default function IndexPage() {
       <footer className="border-t border-border print:hidden">
         <div className="mx-auto flex max-w-[90vw] flex-col items-center justify-between gap-4 px-4 py-8 text-sm text-muted-foreground sm:flex-row sm:px-6">
           {/* Logo */}
-          <a
+          <Link
             href="/"
             className="flex items-center gap-3 font-display text-xl font-black tracking-tight text-foreground"
           >
             <span className="grid h-10 w-10 place-items-center rounded-xl bg-transparent hover:bg-primary/10 transition-colors text-primary-foreground">
-              <img src={logo.src} alt="logo" />
+              <Image src={logo} alt="logo" width={40} height={40} />
             </span>
 
             <div className="flex flex-col leading-none">
@@ -361,7 +362,7 @@ export default function IndexPage() {
                 SaaS Financial Intelligence Platform
               </span>
             </div>
-          </a>
+          </Link>
           <p>© {new Date().getFullYear()} Clykur Financial OS. Built for SaaS Founders.</p>
         </div>
       </footer>

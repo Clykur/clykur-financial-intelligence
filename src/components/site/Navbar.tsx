@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Calculator as CalcIcon, Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/app/icon.png";
 
@@ -50,10 +52,11 @@ export function Navbar() {
    after:absolute after:left-0 after:-bottom-[2px] after:h-[2px] after:w-full
    after:origin-left after:scale-x-0 after:rounded-full after:bg-primary
    after:transition-transform after:duration-300
-   ${pathname === "/" && activeSection === section
-      ? "text-primary after:scale-x-100"
-      : "text-muted-foreground hover:text-foreground hover:after:scale-x-100 hover:after:bg-primary/50"
-    }`;
+   ${
+     pathname === "/" && activeSection === section
+       ? "text-primary after:scale-x-100"
+       : "text-muted-foreground hover:text-foreground hover:after:scale-x-100 hover:after:bg-primary/50"
+   }`;
 
   const toggleTheme = () => {
     const next = !light;
@@ -72,12 +75,12 @@ export function Navbar() {
     >
       <div className="mx-auto flex h-20 max-w-[90vw] w-full items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <a
+        <Link
           href="/"
           className="flex items-center gap-3 font-display text-xl font-black tracking-tight text-foreground"
         >
           <span className="grid h-10 w-10 place-items-center rounded-xl bg-transparent hover:bg-primary/10 transition-colors text-primary-foreground">
-            <img src={logo.src} alt="logo" />
+            <Image src={logo} alt="logo" width={40} height={40} />
           </span>
 
           <div className="flex flex-col leading-none">
@@ -88,31 +91,32 @@ export function Navbar() {
               SaaS Financial Intelligence Platform
             </span>
           </div>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-8 text-sm font-semibold md:flex">
-          <a href="/#features" className={navItem("features")}>
+          <Link href="/#features" className={navItem("features")}>
             Features
-          </a>
+          </Link>
 
-          <a href="/#seo-tools" className={navItem("seo-tools")}>
+          <Link href="/#seo-tools" className={navItem("seo-tools")}>
             Calculators
-          </a>
+          </Link>
 
-          <a href="/#faq" className={navItem("faq")}>
+          <Link href="/#faq" className={navItem("faq")}>
             FAQ
-          </a>
+          </Link>
 
-          <a
+          <Link
             href="/dashboard"
-            className={`transition-colors hover:text-foreground ${pathname === "/dashboard"
-              ? "text-primary border-b-2 border-primary pb-1"
-              : "text-muted-foreground"
-              }`}
+            className={`transition-colors hover:text-foreground ${
+              pathname === "/dashboard"
+                ? "text-primary border-b-2 border-primary pb-1"
+                : "text-muted-foreground"
+            }`}
           >
             Dashboard
-          </a>
+          </Link>
         </nav>
 
         {/* Desktop Actions */}
@@ -122,7 +126,7 @@ export function Navbar() {
           </Button>
 
           <Button variant="hero" asChild>
-            <a href="/dashboard">Start Planning</a>
+            <Link href="/dashboard">Start Planning</Link>
           </Button>
         </div>
 
@@ -154,43 +158,44 @@ export function Navbar() {
         className="overflow-hidden border-t border-border/60 bg-background/95 backdrop-blur-xl md:hidden"
       >
         <div className="flex flex-col p-4">
-          <a
+          <Link
             href="/#features"
             onClick={() => setMenuOpen(false)}
             className="rounded-lg px-3 py-3 hover:bg-muted text-sm font-semibold text-muted-foreground"
           >
             Features
-          </a>
+          </Link>
 
-          <a
+          <Link
             href="/#seo-tools"
             onClick={() => setMenuOpen(false)}
             className="rounded-lg px-3 py-3 hover:bg-muted text-sm font-semibold text-muted-foreground"
           >
             Calculators
-          </a>
+          </Link>
 
-          <a
+          <Link
             href="/dashboard"
             onClick={() => setMenuOpen(false)}
-            className={`rounded-lg px-3 py-3 hover:bg-muted text-sm font-bold ${pathname === "/dashboard" ? "text-primary bg-primary/5" : "text-muted-foreground"
-              }`}
+            className={`rounded-lg px-3 py-3 hover:bg-muted text-sm font-bold ${
+              pathname === "/dashboard" ? "text-primary bg-primary/5" : "text-muted-foreground"
+            }`}
           >
             Dashboard
-          </a>
+          </Link>
 
-          <a
+          <Link
             href="/#faq"
             onClick={() => setMenuOpen(false)}
             className="rounded-lg px-3 py-3 hover:bg-muted text-sm font-semibold text-muted-foreground"
           >
             FAQ
-          </a>
+          </Link>
 
           <Button variant="hero" asChild className="mt-4 w-full">
-            <a href="/dashboard" onClick={() => setMenuOpen(false)}>
+            <Link href="/dashboard" onClick={() => setMenuOpen(false)}>
               Start Planning
-            </a>
+            </Link>
           </Button>
         </div>
       </motion.div>

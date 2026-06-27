@@ -1,6 +1,5 @@
 "use client";
 
-import { Sparkles } from "lucide-react";
 import { type CalculatorInputs } from "@/lib/pricing";
 
 interface SEOPageProps {

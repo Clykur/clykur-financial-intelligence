@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Check, ShieldAlert, Sparkles, Building, Globe, Zap, Percent } from "lucide-react";
+import { Sparkles, Building, Globe, Percent } from "lucide-react";
 
 interface CompetitorModel {
   name: string;

@@ -1,14 +1,14 @@
 "use client";
 
 import React from "react";
-import { CheckCircle2, Circle, Milestone, AlertCircle, ArrowUpRight } from "lucide-react";
-import { CalculatorInputs, CostResult, formatMoney } from "@/lib/pricing";
+import { CheckCircle2, Circle, Milestone } from "lucide-react";
+import { CalculatorInputs, CostResult, formatMoney, type Currency } from "@/lib/pricing";
 
 interface StartupTimelineProps {
   inputs: CalculatorInputs;
   results: CostResult;
   currencySymbol: string;
-  activeCurrency: any;
+  activeCurrency: Currency;
 }
 
 interface TimelineMilestone {
@@ -24,7 +24,7 @@ const MILESTONES: TimelineMilestone[] = [
     id: "paying-customer",
     label: "First Paying Customer",
     conditionLabel: "Paying customers > 0",
-    checkReached: (i, r) => i.payingCustomers >= 1,
+    checkReached: (i) => i.payingCustomers >= 1,
     advice:
       "Validate value proposition, set up clean payment processing links, and collect feedback.",
   },
@@ -32,7 +32,7 @@ const MILESTONES: TimelineMilestone[] = [
     id: "100-customers",
     label: "100 Paying Customers",
     conditionLabel: "Paying customers >= 100",
-    checkReached: (i, r) => i.payingCustomers >= 100,
+    checkReached: (i) => i.payingCustomers >= 100,
     advice:
       "Find scalable distribution channels, smooth onboarding UX, and stabilize cloud infrastructure.",
   },
@@ -40,7 +40,7 @@ const MILESTONES: TimelineMilestone[] = [
     id: "break-even",
     label: "Break-even Point",
     conditionLabel: "Monthly Revenue > Monthly Expenses",
-    checkReached: (i, r) => r.netProfit >= 0,
+    checkReached: (_i, r) => r.netProfit >= 0,
     advice:
       "Achieved when MRR covers employee payroll, server hosting, and marketing budgets. Focus on expansion pricing.",
   },
@@ -48,7 +48,7 @@ const MILESTONES: TimelineMilestone[] = [
     id: "10k-mrr",
     label: "$10K MRR Threshold",
     conditionLabel: "MRR >= $10,000",
-    checkReached: (i, r) => r.metrics.mrr >= 10000,
+    checkReached: (_i, r) => r.metrics.mrr >= 10000,
     advice:
       "Transition to team expansion, setup solid customer CRM pipelines, and reduce support drag.",
   },
@@ -56,15 +56,15 @@ const MILESTONES: TimelineMilestone[] = [
     id: "50k-mrr",
     label: "$50K MRR Threshold",
     conditionLabel: "MRR >= $50,000",
-    checkReached: (i, r) => r.metrics.mrr >= 50000,
+    checkReached: (_i, r) => r.metrics.mrr >= 50000,
     advice:
       "Establish corporate account pricing tiers, hire middle management, and optimize database read caching.",
   },
   {
     id: "100k-mrr",
     label: "$100K MRR Threshold",
-    conditionLabel: "MRR >= $100,000",
-    checkReached: (i, r) => r.metrics.mrr >= 100000,
+    conditionLabel: "MRR >= $10,0000",
+    checkReached: (_i, r) => r.metrics.mrr >= 100000,
     advice:
       "Enterprise scale. Set up automated SOC2 security reporting, dedicated account support managers, and international currency checkouts.",
   },
@@ -72,14 +72,14 @@ const MILESTONES: TimelineMilestone[] = [
     id: "1m-arr",
     label: "$1M ARR Milestone",
     conditionLabel: "ARR >= $1,000,000",
-    checkReached: (i, r) => r.metrics.arr >= 1000000,
+    checkReached: (_i, r) => r.metrics.arr >= 1000000,
     advice: "Elite startup scale. Fully scalable CAC engine, highly stable retention cohorts.",
   },
   {
     id: "series-a-ready",
     label: "Series A Ready",
     conditionLabel: "Health Score >= 80 & LTV:CAC >= 4x",
-    checkReached: (i, r) => r.healthScore >= 80 && r.metrics.ltvToCac >= 4,
+    checkReached: (_i, r) => r.healthScore >= 80 && r.metrics.ltvToCac >= 4,
     advice:
       "Ready for venture capital expansion. Investors value low churn, fast payback periods, and high capital efficiency.",
   },
@@ -87,7 +87,7 @@ const MILESTONES: TimelineMilestone[] = [
     id: "global-expansion",
     label: "Global Expansion",
     conditionLabel: "Team Members >= 10 & API requests >= 50M",
-    checkReached: (i, r) => i.teamMembers >= 10 && i.apiRequests >= 50000000,
+    checkReached: (i) => i.teamMembers >= 10 && i.apiRequests >= 50000000,
     advice:
       "Setup multi-region server distributions, localize marketing content, and configure local tax operations.",
   },
@@ -96,7 +96,7 @@ const MILESTONES: TimelineMilestone[] = [
 export function StartupTimeline({
   inputs,
   results,
-  currencySymbol,
+  currencySymbol: _,
   activeCurrency,
 }: StartupTimelineProps) {
   return (
@@ -112,7 +112,7 @@ export function StartupTimeline({
       </div>
 
       <div className="relative border-l border-border/70 ml-4 pl-6 space-y-6 py-2">
-        {MILESTONES.map((milestone, idx) => {
+        {MILESTONES.map((milestone) => {
           const reached = milestone.checkReached(inputs, results);
           return (
             <div key={milestone.id} className="relative group">

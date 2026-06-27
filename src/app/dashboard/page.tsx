@@ -7,7 +7,13 @@ import { DashboardSkeleton } from "@/components/calc/DashboardSkeleton";
 import { Navbar } from "@/components/site/Navbar";
 import { CommandPalette } from "@/components/site/CommandPalette";
 import { useLocalStorage } from "@/hooks/use-local-storage";
-import { DEFAULT_INPUTS, type CalculatorInputs, type CurrencyCode } from "@/lib/pricing";
+import {
+  DEFAULT_INPUTS,
+  type CalculatorInputs,
+  type CurrencyCode,
+  type CloudProvider,
+  type TargetMarket,
+} from "@/lib/pricing";
 import { Toaster } from "@/components/ui/sonner";
 
 function DashboardContent() {
@@ -49,20 +55,20 @@ function DashboardContent() {
       numKeys.forEach((key) => {
         const val = searchParams.get(key);
         if (val !== null) {
-          parsedInputs[key] = Number(val) as any;
+          parsedInputs[key] = Number(val) as never;
         }
       });
 
       // Parse cloud provider
       const provider = searchParams.get("cloudProvider");
       if (provider) {
-        parsedInputs.cloudProvider = provider as any;
+        parsedInputs.cloudProvider = provider as CloudProvider;
       }
 
       // Parse target market
       const targetMarket = searchParams.get("targetMarket");
       if (targetMarket) {
-        parsedInputs.targetMarket = targetMarket as any;
+        parsedInputs.targetMarket = targetMarket as TargetMarket;
       }
 
       // Parse currency

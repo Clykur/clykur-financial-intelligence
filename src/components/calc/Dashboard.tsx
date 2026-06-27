@@ -126,7 +126,6 @@ export function Dashboard({
   const activeCurrency = CURRENCIES[currencyCode];
   const results = computeCosts(inputs);
   const recommendations = recommendPlans(inputs, results);
-  const advice = generateAdvice(inputs, results);
 
   // Scenario Management
   const handleSaveScenario = () => {
@@ -675,17 +674,19 @@ export function Dashboard({
                           setIsCurrencyOpen(false);
                         }}
                         title={`${cur.name} (${cur.country})`}
-                        className={`flex w-full items-center justify-between px-3.5 py-2 text-left transition hover:bg-secondary cursor-pointer border-b border-border/20 last:border-b-0 ${isSelected
-                          ? "bg-primary/10 text-primary font-semibold"
-                          : "text-foreground font-normal"
-                          }`}
+                        className={`flex w-full items-center justify-between px-3.5 py-2 text-left transition hover:bg-secondary cursor-pointer border-b border-border/20 last:border-b-0 ${
+                          isSelected
+                            ? "bg-primary/10 text-primary font-semibold"
+                            : "text-foreground font-normal"
+                        }`}
                       >
                         <div className="flex items-center gap-2 truncate">
                           <span
-                            className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isSelected
-                              ? "bg-primary/20 text-primary"
-                              : "bg-muted text-muted-foreground"
-                              }`}
+                            className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                              isSelected
+                                ? "bg-primary/20 text-primary"
+                                : "bg-muted text-muted-foreground"
+                            }`}
                           >
                             {cur.symbol}
                           </span>
@@ -1071,80 +1072,88 @@ export function Dashboard({
           <div className="flex flex-wrap gap-2 border-b border-border/30 pb-4 mb-6">
             <button
               onClick={() => handleTabChange("overview")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer border ${activeTab === "overview"
-                ? "bg-primary text-primary-foreground border-primary/20 shadow-md shadow-primary/10"
-                : "bg-secondary/40 text-muted-foreground hover:text-foreground hover:bg-secondary border-border/30"
-                }`}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer border ${
+                activeTab === "overview"
+                  ? "bg-primary text-primary-foreground border-primary/20 shadow-md shadow-primary/10"
+                  : "bg-secondary/40 text-muted-foreground hover:text-foreground hover:bg-secondary border-border/30"
+              }`}
             >
               <TrendingUp className="h-4 w-4" />
               Projections
             </button>
             <button
               onClick={() => handleTabChange("advisor")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer border ${activeTab === "advisor"
-                ? "bg-primary text-primary-foreground border-primary/20 shadow-md shadow-primary/10"
-                : "bg-secondary/40 text-muted-foreground hover:text-foreground hover:bg-secondary border-border/30"
-                }`}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer border ${
+                activeTab === "advisor"
+                  ? "bg-primary text-primary-foreground border-primary/20 shadow-md shadow-primary/10"
+                  : "bg-secondary/40 text-muted-foreground hover:text-foreground hover:bg-secondary border-border/30"
+              }`}
             >
               <Sparkles className="h-4 w-4" />
               AI CFO Chat
             </button>
             <button
               onClick={() => handleTabChange("pricing")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer border ${activeTab === "pricing"
-                ? "bg-primary text-primary-foreground border-primary/20 shadow-md shadow-primary/10"
-                : "bg-secondary/40 text-muted-foreground hover:text-foreground hover:bg-secondary border-border/30"
-                }`}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer border ${
+                activeTab === "pricing"
+                  ? "bg-primary text-primary-foreground border-primary/20 shadow-md shadow-primary/10"
+                  : "bg-secondary/40 text-muted-foreground hover:text-foreground hover:bg-secondary border-border/30"
+              }`}
             >
               <Target className="h-4 w-4" />
               Pricing Intel
             </button>
             <button
               onClick={() => handleTabChange("timeline")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer border ${activeTab === "timeline"
-                ? "bg-primary text-primary-foreground border-primary/20 shadow-md shadow-primary/10"
-                : "bg-secondary/40 text-muted-foreground hover:text-foreground hover:bg-secondary border-border/30"
-                }`}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer border ${
+                activeTab === "timeline"
+                  ? "bg-primary text-primary-foreground border-primary/20 shadow-md shadow-primary/10"
+                  : "bg-secondary/40 text-muted-foreground hover:text-foreground hover:bg-secondary border-border/30"
+              }`}
             >
               <Rocket className="h-4 w-4" />
               Timeline
             </button>
             <button
               onClick={() => handleTabChange("benchmarks")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer border ${activeTab === "benchmarks"
-                ? "bg-primary text-primary-foreground border-primary/20 shadow-md shadow-primary/10"
-                : "bg-secondary/40 text-muted-foreground hover:text-foreground hover:bg-secondary border-border/30"
-                }`}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer border ${
+                activeTab === "benchmarks"
+                  ? "bg-primary text-primary-foreground border-primary/20 shadow-md shadow-primary/10"
+                  : "bg-secondary/40 text-muted-foreground hover:text-foreground hover:bg-secondary border-border/30"
+              }`}
             >
               <Award className="h-4 w-4" />
               Benchmarks
             </button>
             <button
               onClick={() => handleTabChange("cloud")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer border ${activeTab === "cloud"
-                ? "bg-primary text-primary-foreground border-primary/20 shadow-md shadow-primary/10"
-                : "bg-secondary/40 text-muted-foreground hover:text-foreground hover:bg-secondary border-border/30"
-                }`}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer border ${
+                activeTab === "cloud"
+                  ? "bg-primary text-primary-foreground border-primary/20 shadow-md shadow-primary/10"
+                  : "bg-secondary/40 text-muted-foreground hover:text-foreground hover:bg-secondary border-border/30"
+              }`}
             >
               <Server className="h-4 w-4" />
               Cloud Costs
             </button>
             <button
               onClick={() => handleTabChange("investor")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer border ${activeTab === "investor"
-                ? "bg-primary text-primary-foreground border-primary/20 shadow-md shadow-primary/10"
-                : "bg-secondary/40 text-muted-foreground hover:text-foreground hover:bg-secondary border-border/30"
-                }`}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer border ${
+                activeTab === "investor"
+                  ? "bg-primary text-primary-foreground border-primary/20 shadow-md shadow-primary/10"
+                  : "bg-secondary/40 text-muted-foreground hover:text-foreground hover:bg-secondary border-border/30"
+              }`}
             >
               <DollarSign className="h-4 w-4" />
               Investor Mode
             </button>
             <button
               onClick={() => handleTabChange("report")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer border ${activeTab === "report"
-                ? "bg-primary text-primary-foreground border-primary/20 shadow-md shadow-primary/10"
-                : "bg-secondary/40 text-muted-foreground hover:text-foreground hover:bg-secondary border-border/30"
-                }`}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer border ${
+                activeTab === "report"
+                  ? "bg-primary text-primary-foreground border-primary/20 shadow-md shadow-primary/10"
+                  : "bg-secondary/40 text-muted-foreground hover:text-foreground hover:bg-secondary border-border/30"
+              }`}
             >
               <FileText className="h-4 w-4" />
               Briefing & Reports
@@ -1496,10 +1505,11 @@ export function Dashboard({
                       {recommendations.map((plan) => (
                         <div
                           key={plan.name}
-                          className={`rounded-2xl border p-5 flex flex-col justify-between ${plan.highlighted
-                            ? "bg-card border-primary ring-1 ring-primary relative"
-                            : "bg-card/50 border-border"
-                            }`}
+                          className={`rounded-2xl border p-5 flex flex-col justify-between ${
+                            plan.highlighted
+                              ? "bg-card border-primary ring-1 ring-primary relative"
+                              : "bg-card/50 border-border"
+                          }`}
                         >
                           {plan.highlighted && (
                             <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-0.5 text-[10px] font-black uppercase text-primary-foreground tracking-wider">
@@ -1636,8 +1646,9 @@ export function Dashboard({
                         return (
                           <div
                             key={p.key}
-                            className={`rounded-xl border p-5 flex flex-col justify-between sm:flex-row sm:items-center ${isSelected ? "bg-primary/5 border-primary" : "bg-card border-border"
-                              }`}
+                            className={`rounded-xl border p-5 flex flex-col justify-between sm:flex-row sm:items-center ${
+                              isSelected ? "bg-primary/5 border-primary" : "bg-card border-border"
+                            }`}
                           >
                             <div>
                               <h4 className="text-sm font-bold flex items-center gap-2">

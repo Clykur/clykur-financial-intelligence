@@ -8,15 +8,14 @@ import {
   CheckCircle,
   HelpCircle,
   ArrowRight,
-  Lightbulb,
 } from "lucide-react";
-import { CalculatorInputs, CostResult, formatMoney } from "@/lib/pricing";
+import { CalculatorInputs, CostResult, formatMoney, type Currency } from "@/lib/pricing";
 
 interface CfoAdvisorProps {
   inputs: CalculatorInputs;
   results: CostResult;
   currencySymbol: string;
-  activeCurrency: any;
+  activeCurrency: Currency;
 }
 
 interface QuestionPreset {
@@ -73,7 +72,12 @@ interface CfoResponse {
   assumptions: string[];
 }
 
-export function CfoAdvisor({ inputs, results, currencySymbol, activeCurrency }: CfoAdvisorProps) {
+export function CfoAdvisor({
+  inputs,
+  results,
+  currencySymbol: _,
+  activeCurrency,
+}: CfoAdvisorProps) {
   const [query, setQuery] = useState("");
   const [response, setResponse] = useState<CfoResponse | null>(null);
   const [loading, setLoading] = useState(false);
@@ -82,7 +86,7 @@ export function CfoAdvisor({ inputs, results, currencySymbol, activeCurrency }: 
     const qLower = question.toLowerCase();
 
     // Default fallback
-    let ans = {
+    const ans = {
       answer:
         "I have evaluated your SaaS financials based on current inputs. Let's look at the runway, pricing strategy, and gross margin levels to determine the optimal next steps.",
       calculations: [

@@ -101,7 +101,7 @@ export function StartupTimeline({
 }: StartupTimelineProps) {
   return (
     <div className="space-y-6">
-      <div className="glass rounded-2xl p-6 border border-border/80 bg-aura">
+      <div className="p-6 border-b border-border/80">
         <h3 className="font-display text-base font-bold flex items-center gap-2 text-foreground">
           <Milestone className="h-5 w-5 text-primary" /> Interactive Startup Milestone Timeline
         </h3>
@@ -131,10 +131,10 @@ export function StartupTimeline({
 
               {/* Milestone Details Card */}
               <div
-                className={`glass rounded-2xl p-5 border transition duration-200 ${
+                className={`p-5 mb-4 border rounded-md transition duration-200 ${
                   reached
-                    ? "bg-emerald-500/5 border-emerald-500/20 hover:border-emerald-500/30"
-                    : "bg-card border-border/60 hover:border-primary/20"
+                    ? "bg-card border-success hover:bg-muted"
+                    : "bg-card border-border hover:bg-muted"
                 }`}
               >
                 <div className="flex justify-between items-center">
@@ -145,12 +145,12 @@ export function StartupTimeline({
                   >
                     {milestone.label}
                     {reached && (
-                      <span className="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/15">
+                      <span className="text-[10px] bg-success text-white px-2 py-0.5 rounded-full border border-success">
                         Achieved
                       </span>
                     )}
                   </h4>
-                  <span className="text-[10px] text-muted-foreground font-mono bg-secondary px-2 py-0.5 rounded border border-border/50">
+                  <span className="text-[10px] text-muted-foreground font-mono bg-card px-2 py-0.5 rounded border border-border">
                     Rule: {milestone.conditionLabel}
                   </span>
                 </div>

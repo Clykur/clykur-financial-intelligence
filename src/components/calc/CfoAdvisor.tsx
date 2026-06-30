@@ -478,7 +478,7 @@ export function CfoAdvisor({
 
   return (
     <div className="space-y-6">
-      <div className="glass rounded-2xl p-6 border border-border/80 bg-aura">
+      <div className="p-6 border-y border-border/80">
         <h3 className="font-display text-base font-bold flex items-center gap-2 text-foreground">
           <BrainCircuit className="h-5 w-5 text-primary" /> Conversational AI CFO Advisor
         </h3>
@@ -494,7 +494,7 @@ export function CfoAdvisor({
               key={index}
               type="button"
               onClick={() => handlePresetSelect(preset.q)}
-              className="text-[11px] bg-secondary hover:bg-accent border border-border px-3 py-1.5 rounded-lg transition text-left text-foreground hover:border-primary/50"
+              className="text-[11px] bg-card hover:bg-muted border border-border px-3 py-1.5 rounded-md transition text-left text-foreground hover:border-primary/50"
             >
               {preset.title}
             </button>
@@ -508,12 +508,12 @@ export function CfoAdvisor({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Ask the CFO: Can I afford to hire? Should we raise prices?..."
-            className="flex-1 bg-secondary border border-border rounded-xl px-4 py-2.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
+            className="flex-1 bg-card border border-border rounded-md px-4 py-2.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
           />
           <button
             type="submit"
             disabled={loading}
-            className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-4 rounded-xl text-xs flex items-center gap-1.5 transition disabled:opacity-50"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-4 rounded-md text-xs flex items-center gap-1.5 transition disabled:opacity-50"
           >
             Ask CFO <ArrowRight className="h-3 w-3" />
           </button>
@@ -521,7 +521,7 @@ export function CfoAdvisor({
       </div>
 
       {loading && (
-        <div className="glass rounded-2xl p-8 border border-border flex flex-col items-center justify-center space-y-3 min-h-[250px]">
+        <div className="p-8 border-b border-border flex flex-col items-center justify-center space-y-3 min-h-[250px]">
           <div className="h-6 w-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
           <p className="text-xs text-muted-foreground animate-pulse font-medium">
             AI CFO is compiling financial ledgers, auditing margins, and evaluating risk curves...
@@ -532,7 +532,7 @@ export function CfoAdvisor({
       {!loading && response && (
         <div className="space-y-6">
           {/* Main Answer card */}
-          <div className="glass rounded-2xl p-6 border border-border/80 space-y-4">
+          <div className="p-6 border-b border-border/80 space-y-4">
             <div className="flex justify-between items-center border-b border-border/60 pb-3">
               <div className="flex items-center gap-2 text-xs font-semibold text-primary">
                 <Sparkles className="h-4 w-4" /> AI CFO Analysis Report
@@ -562,7 +562,7 @@ export function CfoAdvisor({
               </h4>
               <div className="grid gap-2 sm:grid-cols-3">
                 {response.calculations.map((calc, i) => (
-                  <div key={i} className="bg-secondary/40 border border-border/50 rounded-xl p-3">
+                  <div key={i} className="bg-card border border-border rounded-md p-3">
                     <div className="text-[10px] text-muted-foreground truncate">{calc.label}</div>
                     <div className="text-sm font-bold text-foreground mt-0.5">{calc.result}</div>
                     <div className="text-[9px] text-muted-foreground font-mono mt-1">

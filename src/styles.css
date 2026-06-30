@@ -43,91 +43,204 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Dark theme is the default */
+/* Light theme is the default (Monochrome + Violet Blueprint) */
 :root {
-  --radius: 0.875rem;
+  --radius: 0.5rem; /* 8px */
+  --site-header-height: 4rem;
 
-  --background: oklch(0.16 0.012 264);
-  --foreground: oklch(0.97 0.005 264);
+  --background: #f5f5f5; /* Frost */
+  --foreground: #202020; /* Ink Black */
 
-  --card: oklch(0.205 0.014 264);
-  --card-foreground: oklch(0.97 0.005 264);
+  --card: #ffffff; /* Paper White */
+  --card-foreground: #202020; /* Ink Black */
 
-  --popover: oklch(0.205 0.014 264);
-  --popover-foreground: oklch(0.97 0.005 264);
+  --popover: #ffffff; /* Paper White */
+  --popover-foreground: #202020; /* Ink Black */
 
-  --primary: oklch(0.705 0.19 43);
-  --primary-foreground: oklch(0.16 0.012 264);
-  --primary-glow: oklch(0.78 0.16 55);
+  --primary: #5757f8; /* Violet */
+  --primary-foreground: #ffffff; /* White text on Violet */
+  --primary-glow: #5757f8;
 
-  --secondary: oklch(0.27 0.016 264);
-  --secondary-foreground: oklch(0.97 0.005 264);
+  --secondary: #ffffff;
+  --secondary-foreground: #202020;
 
-  --muted: oklch(0.27 0.016 264);
-  --muted-foreground: oklch(0.68 0.015 264);
+  --muted: #f5f5f5;
+  --muted-foreground: #333333; /* Carbon */
 
-  --accent: oklch(0.3 0.02 43);
-  --accent-foreground: oklch(0.97 0.005 264);
+  --accent: #5757f8;
+  --accent-foreground: #ffffff;
 
-  --destructive: oklch(0.62 0.22 25);
-  --destructive-foreground: oklch(0.98 0.005 264);
+  --destructive: #ef4444; /* Red for errors */
+  --destructive-foreground: #ffffff;
 
-  --success: oklch(0.72 0.17 155);
+  --success: #22c55e; /* Green for success */
 
-  --border: oklch(0.3 0.014 264);
-  --input: oklch(0.3 0.014 264);
-  --ring: oklch(0.705 0.19 43);
+  --border: #202020; /* Ink Black 1px borders */
+  --input: #202020;
+  --ring: #5757f8;
 
-  --chart-1: oklch(0.705 0.19 43);
-  --chart-2: oklch(0.72 0.17 155);
-  --chart-3: oklch(0.66 0.16 255);
-  --chart-4: oklch(0.78 0.16 90);
-  --chart-5: oklch(0.7 0.18 320);
+  --chart-1: #5757f8;
+  --chart-2: #202020;
+  --chart-3: #333333;
+  --chart-4: #888888;
+  --chart-5: #cccccc;
 
-  --sidebar: oklch(0.205 0.014 264);
-  --sidebar-foreground: oklch(0.97 0.005 264);
-  --sidebar-primary: oklch(0.705 0.19 43);
-  --sidebar-primary-foreground: oklch(0.16 0.012 264);
-  --sidebar-accent: oklch(0.27 0.016 264);
-  --sidebar-accent-foreground: oklch(0.97 0.005 264);
-  --sidebar-border: oklch(0.3 0.014 264);
-  --sidebar-ring: oklch(0.705 0.19 43);
+  --sidebar: #f5f5f5;
+  --sidebar-foreground: #202020;
+  --sidebar-primary: #5757f8;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ffffff;
+  --sidebar-accent-foreground: #202020;
+  --sidebar-border: #202020;
+  --sidebar-ring: #5757f8;
+
+  /* Workflow hero (light defaults until theme class is applied) */
+  --wf-bg: #f0f0f6;
+  --wf-titlebar: #e8e8f0;
+  --wf-sidebar: #eaeaf2;
+  --wf-panel: #e8e8f0;
+  --wf-card: #ffffff;
+  --wf-card-active: #eff0ff;
+  --wf-border: rgba(0, 0, 0, 0.09);
+  --wf-card-border: rgba(0, 0, 0, 0.11);
+  --wf-active-border: #6366f1;
+  --wf-accent: #6366f1;
+  --wf-accent-glow: rgba(99, 102, 241, 0.15);
+  --wf-accent-lt: #4f46e5;
+  --wf-green: #16a34a;
+  --wf-amber: #b45309;
+  --wf-text: rgba(0, 0, 0, 0.85);
+  --wf-text-sub: rgba(0, 0, 0, 0.42);
+  --wf-track: rgba(0, 0, 0, 0.1);
+  --wf-grid: rgba(0, 0, 0, 0.05);
+  --wf-input-bg: rgba(0, 0, 0, 0.03);
+  --wf-metric-bg: rgba(99, 102, 241, 0.07);
+  --wf-dot: #ff5f56;
+  --wf-dot-y: #ffbd2e;
+  --wf-dot-g: #27c93f;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --site-header-height: 5rem;
+  }
 }
 
 .light {
-  --background: oklch(0.99 0.003 264);
-  --foreground: oklch(0.2 0.012 264);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.2 0.012 264);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.2 0.012 264);
-  --primary: oklch(0.66 0.2 43);
-  --primary-foreground: oklch(0.99 0.003 264);
-  --primary-glow: oklch(0.75 0.17 55);
-  --secondary: oklch(0.96 0.006 264);
-  --secondary-foreground: oklch(0.2 0.012 264);
-  --muted: oklch(0.96 0.006 264);
-  --muted-foreground: oklch(0.5 0.015 264);
-  --accent: oklch(0.95 0.03 55);
-  --accent-foreground: oklch(0.2 0.012 264);
-  --destructive: oklch(0.6 0.22 25);
-  --destructive-foreground: oklch(0.99 0.003 264);
-  --success: oklch(0.6 0.16 155);
-  --border: oklch(0.9 0.008 264);
-  --input: oklch(0.9 0.008 264);
-  --ring: oklch(0.66 0.2 43);
-  --sidebar: oklch(0.98 0.003 264);
-  --sidebar-foreground: oklch(0.2 0.012 264);
-  --sidebar-primary: oklch(0.66 0.2 43);
-  --sidebar-primary-foreground: oklch(0.99 0.003 264);
-  --sidebar-accent: oklch(0.96 0.006 264);
-  --sidebar-accent-foreground: oklch(0.2 0.012 264);
-  --sidebar-border: oklch(0.9 0.008 264);
-  --sidebar-ring: oklch(0.66 0.2 43);
+  --background: #f5f5f5;
+  --foreground: #202020;
+  --card: #ffffff;
+  --card-foreground: #202020;
+  --popover: #ffffff;
+  --popover-foreground: #202020;
+  --primary: #5757f8;
+  --primary-foreground: #ffffff;
+  --primary-glow: #5757f8;
+  --secondary: #ffffff;
+  --secondary-foreground: #202020;
+  --muted: #f5f5f5;
+  --muted-foreground: #333333;
+  --accent: #5757f8;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --success: #22c55e;
+  --border: #202020;
+  --input: #202020;
+  --ring: #5757f8;
+  --sidebar: #f5f5f5;
+  --sidebar-foreground: #202020;
+  --sidebar-primary: #5757f8;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ffffff;
+  --sidebar-accent-foreground: #202020;
+  --sidebar-ring: #5757f8;
+
+  /* Workflow Builder variables */
+  --wf-bg: #f0f0f6;
+  --wf-titlebar: #e8e8f0;
+  --wf-sidebar: #eaeaf2;
+  --wf-panel: #e8e8f0;
+  --wf-card: #ffffff;
+  --wf-card-active: #eff0ff;
+  --wf-border: rgba(0, 0, 0, 0.09);
+  --wf-card-border: rgba(0, 0, 0, 0.11);
+  --wf-active-border: #6366f1;
+  --wf-accent: #6366f1;
+  --wf-accent-glow: rgba(99, 102, 241, 0.15);
+  --wf-accent-lt: #4f46e5;
+  --wf-green: #16a34a;
+  --wf-amber: #b45309;
+  --wf-text: rgba(0, 0, 0, 0.85);
+  --wf-text-sub: rgba(0, 0, 0, 0.42);
+  --wf-track: rgba(0, 0, 0, 0.1);
+  --wf-grid: rgba(0, 0, 0, 0.05);
+  --wf-input-bg: rgba(0, 0, 0, 0.03);
+  --wf-metric-bg: rgba(99, 102, 241, 0.07);
+  --wf-dot: #ff5f56;
+  --wf-dot-y: #ffbd2e;
+  --wf-dot-g: #27c93f;
+}
+
+.dark {
+  --background: #09090b;
+  --foreground: #fafafa;
+  --card: #121212;
+  --card-foreground: #fafafa;
+  --popover: #121212;
+  --popover-foreground: #fafafa;
+  --primary: #5757f8;
+  --primary-foreground: #ffffff;
+  --primary-glow: #5757f8;
+  --secondary: #27272a;
+  --secondary-foreground: #fafafa;
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
+  --accent: #5757f8;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --success: #22c55e;
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #5757f8;
+  --sidebar: #09090b;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #5757f8;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #27272a;
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: #27272a;
+  --sidebar-ring: #5757f8;
+
+  /* Workflow Builder variables */
+  --wf-bg: #0c0c0f;
+  --wf-titlebar: #111115;
+  --wf-sidebar: #0f0f13;
+  --wf-panel: #111115;
+  --wf-card: #18181c;
+  --wf-card-active: #1e1a42;
+  --wf-border: rgba(255, 255, 255, 0.08);
+  --wf-card-border: rgba(255, 255, 255, 0.1);
+  --wf-active-border: #6366f1;
+  --wf-accent: #6366f1;
+  --wf-accent-glow: rgba(99, 102, 241, 0.25);
+  --wf-accent-lt: #a5b4fc;
+  --wf-green: #22c55e;
+  --wf-amber: #f59e0b;
+  --wf-text: rgba(255, 255, 255, 0.88);
+  --wf-text-sub: rgba(255, 255, 255, 0.44);
+  --wf-track: rgba(255, 255, 255, 0.07);
+  --wf-grid: rgba(255, 255, 255, 0.04);
+  --wf-input-bg: rgba(255, 255, 255, 0.04);
+  --wf-metric-bg: rgba(99, 102, 241, 0.09);
+  --wf-dot: #ff5f56;
+  --wf-dot-y: #ffbd2e;
+  --wf-dot-g: #27c93f;
 }
 
 @theme inline {
@@ -135,6 +248,11 @@
 }
 
 @layer base {
+  html {
+    scroll-padding-top: calc(var(--site-header-height) + env(safe-area-inset-top, 0px));
+    overflow-x: hidden;
+  }
+
   * {
     border-color: var(--color-border);
   }
@@ -144,6 +262,10 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    transition:
+      background-color 150ms ease,
+      color 150ms ease,
+      border-color 150ms ease;
   }
 
   h1,
@@ -156,49 +278,26 @@
   }
 }
 
-@utility glass {
-  background: color-mix(in oklab, var(--card) 70%, transparent);
-  backdrop-filter: blur(16px) saturate(140%);
-  border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
-}
+@layer utilities {
+  .site-container {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
 
-@utility glass-strong {
-  background: color-mix(in oklab, var(--card) 88%, transparent);
-  backdrop-filter: blur(24px) saturate(160%);
-  border: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
+  .site-page-pad {
+    padding-top: calc(var(--site-header-height) + 1rem + env(safe-area-inset-top, 0px));
+  }
+
+  @media (min-width: 640px) {
+    .site-page-pad {
+      padding-top: calc(var(--site-header-height) + 1.5rem + env(safe-area-inset-top, 0px));
+    }
+  }
+
+  .site-hero-title {
+    @apply font-display text-[2.125rem] font-extrabold leading-[1.08] tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl;
+  }
 }
 
 @utility text-gradient {
-  background: linear-gradient(120deg, var(--primary), var(--primary-glow));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-@utility glow-primary {
-  box-shadow:
-    0 0 0 1px color-mix(in oklab, var(--primary) 30%, transparent),
-    0 12px 40px -12px color-mix(in oklab, var(--primary) 45%, transparent);
-}
-
-.bg-grid {
-  background-image: radial-gradient(
-    color-mix(in oklab, var(--foreground) 7%, transparent) 1px,
-    transparent 1px
-  );
-  background-size: 28px 28px;
-}
-
-.bg-aura {
-  background:
-    radial-gradient(
-      60% 50% at 50% 0%,
-      color-mix(in oklab, var(--primary) 22%, transparent),
-      transparent 70%
-    ),
-    radial-gradient(
-      40% 40% at 85% 20%,
-      color-mix(in oklab, var(--primary-glow) 14%, transparent),
-      transparent 70%
-    );
+  color: var(--foreground);
 }

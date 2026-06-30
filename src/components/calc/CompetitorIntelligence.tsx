@@ -141,7 +141,7 @@ const COMPETITORS: CompetitorModel[] = [
 export function CompetitorIntelligence() {
   return (
     <div className="space-y-6">
-      <div className="glass rounded-2xl p-6 border border-border/80 bg-aura">
+      <div className="p-6 border-b border-border/80">
         <h3 className="font-display text-base font-bold flex items-center gap-2 text-foreground">
           <Globe className="h-5 w-5 text-primary" /> Competitor Intelligence Matrix
         </h3>
@@ -155,7 +155,7 @@ export function CompetitorIntelligence() {
         {COMPETITORS.map((comp) => (
           <div
             key={comp.name}
-            className="glass rounded-2xl p-6 border border-border/70 flex flex-col justify-between hover:border-primary/40 transition"
+            className="p-6 border-b border-border/70 flex flex-col justify-between hover:bg-muted/50 transition"
           >
             <div className="space-y-4">
               <div className="flex justify-between items-center border-b border-border/50 pb-2">
@@ -175,7 +175,7 @@ export function CompetitorIntelligence() {
 
               {/* Pricing & Free Tier */}
               <div className="grid gap-2 grid-cols-2 text-xs">
-                <div className="bg-secondary/40 rounded-xl p-3 border border-border/40">
+                <div className="bg-card rounded-md p-3 border border-border">
                   <div className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider">
                     Pricing Philosophy
                   </div>
@@ -183,7 +183,7 @@ export function CompetitorIntelligence() {
                     {comp.philosophy}
                   </div>
                 </div>
-                <div className="bg-secondary/40 rounded-xl p-3 border border-border/40">
+                <div className="bg-card rounded-md p-3 border border-border">
                   <div className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider">
                     Free Tier Structure
                   </div>
@@ -195,7 +195,7 @@ export function CompetitorIntelligence() {
 
               {/* Infra & Unit Economics */}
               <div className="grid gap-2 grid-cols-2 text-xs">
-                <div className="bg-secondary/40 rounded-xl p-3 border border-border/40">
+                <div className="bg-card rounded-md p-3 border border-border">
                   <div className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider">
                     Infra Assumptions
                   </div>
@@ -203,7 +203,7 @@ export function CompetitorIntelligence() {
                     {comp.infraAssumption}
                   </div>
                 </div>
-                <div className="bg-secondary/40 rounded-xl p-3 border border-border/40">
+                <div className="bg-card rounded-md p-3 border border-border">
                   <div className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider">
                     Estimated Unit Economics
                   </div>
@@ -214,7 +214,7 @@ export function CompetitorIntelligence() {
               </div>
 
               {/* Lessons */}
-              <div className="bg-primary/5 rounded-xl p-3.5 border border-primary/10">
+              <div className="bg-card rounded-md p-3.5 border border-primary/10">
                 <div className="text-[10px] text-primary font-bold uppercase tracking-wider flex items-center gap-1">
                   <Sparkles className="h-3 w-3" /> Key Lessons for Your SaaS
                 </div>

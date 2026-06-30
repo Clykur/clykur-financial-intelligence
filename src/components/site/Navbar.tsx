@@ -1,91 +1,58 @@
-import { useEffect, useState } from "react";
+"use client";
+
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@/app/icon.png";
+
+import { ThemeToggle } from "@/components/site/ThemeToggle";
 
 export function Navbar() {
   const pathname = usePathname();
-  const [light, setLight] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
 
-  useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    const isLight = saved === "light";
-
-    setLight(isLight);
-    document.documentElement.classList.toggle("light", isLight);
-  }, []);
-
-  useEffect(() => {
-    if (pathname !== "/") return;
-
-    const sections = ["Top", "features", "seo-tools", "faq"];
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      {
-        threshold: 0.5,
-      },
-    );
-
-    sections.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, [pathname]);
-
-  const navItem = (section: string) =>
+  const navItem = (path: string) =>
     `relative inline-flex h-10 items-center text-sm font-semibold transition-colors duration-200
    after:absolute after:left-0 after:-bottom-[2px] after:h-[2px] after:w-full
    after:origin-left after:scale-x-0 after:rounded-full after:bg-primary
    after:transition-transform after:duration-300
    ${
-     pathname === "/" && activeSection === section
+     pathname === path
        ? "text-primary after:scale-x-100"
        : "text-muted-foreground hover:text-foreground hover:after:scale-x-100 hover:after:bg-primary/50"
    }`;
 
-  const toggleTheme = () => {
-    const next = !light;
-
-    setLight(next);
-    document.documentElement.classList.toggle("light", next);
-    localStorage.setItem("theme", next ? "light" : "dark");
-  };
-
   return (
     <motion.header
-      initial={{ y: -24, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.35 }}
-      className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-xl supports-[backdrop-filter]:bg-background/80 print:hidden"
+      initial={false}
+      className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 print:hidden"
     >
-      <div className="mx-auto flex h-20 max-w-[90vw] w-full items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="site-container flex h-16 sm:h-20 w-full items-center justify-between">
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-3 font-display text-xl font-black tracking-tight text-foreground"
+          className="flex min-w-0 items-center gap-2 sm:gap-3 font-display text-lg sm:text-xl font-black tracking-tight text-foreground"
         >
-          <span className="grid h-10 w-10 place-items-center rounded-xl bg-transparent hover:bg-primary/10 transition-colors text-primary-foreground">
-            <Image src={logo} alt="logo" width={40} height={40} />
+          {/* SVG monogram mark */}
+          <span className="grid h-9 w-9 sm:h-10 sm:w-10 shrink-0 place-items-center rounded-xl bg-primary/10 hover:bg-primary/20 transition-colors">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="24" height="24" rx="5" fill="#5757f8" />
+              <path d="M7 6h2.5v9H15v2H7V6Z" fill="white" />
+              <path d="M14 6h2.5v2H14V6Z" fill="rgba(255,255,255,0.5)" />
+            </svg>
           </span>
 
           <div className="flex flex-col leading-none">
             <span className="font-display text-xl font-black tracking-tight text-primary">
-              Clykur
+              LedgerOS
             </span>
             <span className="hidden text-xs font-medium tracking-wide text-muted-foreground lg:block">
               SaaS Financial Intelligence Platform
@@ -94,47 +61,40 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-8 text-sm font-semibold md:flex">
-          <Link href="/#features" className={navItem("features")}>
-            Features
+        <nav className="hidden items-center gap-6 text-sm font-semibold lg:flex xl:gap-8">
+          <Link href="/product" className={navItem("/product")}>
+            Product
           </Link>
 
-          <Link href="/#seo-tools" className={navItem("seo-tools")}>
-            Calculators
+          <Link href="/solutions" className={navItem("/solutions")}>
+            Solutions
           </Link>
 
-          <Link href="/#faq" className={navItem("faq")}>
-            FAQ
+          <Link href="/pricing" className={navItem("/pricing")}>
+            Pricing
           </Link>
 
-          <Link
-            href="/dashboard"
-            className={`transition-colors hover:text-foreground ${
-              pathname === "/dashboard"
-                ? "text-primary border-b-2 border-primary pb-1"
-                : "text-muted-foreground"
-            }`}
-          >
-            Dashboard
+          <Link href="/company" className={navItem("/company")}>
+            Company
+          </Link>
+
+          <Link href="/docs" className={navItem("/docs")}>
+            API Docs
           </Link>
         </nav>
 
         {/* Desktop Actions */}
-        <div className="hidden items-center gap-3 md:flex">
-          <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
-            {light ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5 text-amber-400" />}
-          </Button>
+        <div className="hidden items-center gap-3 lg:flex">
+          <ThemeToggle />
 
           <Button variant="hero" asChild>
-            <Link href="/dashboard">Start Planning</Link>
+            <Link href="/app">Start Planning</Link>
           </Button>
         </div>
 
         {/* Mobile */}
-        <div className="flex items-center gap-2 md:hidden">
-          <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
-            {light ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5 text-amber-400" />}
-          </Button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle />
 
           <Button
             variant="ghost"
@@ -155,45 +115,51 @@ export function Navbar() {
           opacity: menuOpen ? 1 : 0,
         }}
         transition={{ duration: 0.2 }}
-        className="overflow-hidden border-t border-border/60 bg-background/95 backdrop-blur-xl md:hidden"
+        className="overflow-hidden border-t border-border bg-background lg:hidden max-h-[min(70vh,calc(100dvh-var(--site-header-height)))] overflow-y-auto"
       >
         <div className="flex flex-col p-4">
           <Link
-            href="/#features"
+            href="/product"
             onClick={() => setMenuOpen(false)}
             className="rounded-lg px-3 py-3 hover:bg-muted text-sm font-semibold text-muted-foreground"
           >
-            Features
+            Product
           </Link>
 
           <Link
-            href="/#seo-tools"
+            href="/solutions"
             onClick={() => setMenuOpen(false)}
             className="rounded-lg px-3 py-3 hover:bg-muted text-sm font-semibold text-muted-foreground"
           >
-            Calculators
+            Solutions
           </Link>
 
           <Link
-            href="/dashboard"
-            onClick={() => setMenuOpen(false)}
-            className={`rounded-lg px-3 py-3 hover:bg-muted text-sm font-bold ${
-              pathname === "/dashboard" ? "text-primary bg-primary/5" : "text-muted-foreground"
-            }`}
-          >
-            Dashboard
-          </Link>
-
-          <Link
-            href="/#faq"
+            href="/pricing"
             onClick={() => setMenuOpen(false)}
             className="rounded-lg px-3 py-3 hover:bg-muted text-sm font-semibold text-muted-foreground"
           >
-            FAQ
+            Pricing
+          </Link>
+
+          <Link
+            href="/company"
+            onClick={() => setMenuOpen(false)}
+            className="rounded-lg px-3 py-3 hover:bg-muted text-sm font-semibold text-muted-foreground"
+          >
+            Company
+          </Link>
+
+          <Link
+            href="/docs"
+            onClick={() => setMenuOpen(false)}
+            className="rounded-lg px-3 py-3 hover:bg-muted text-sm font-semibold text-muted-foreground"
+          >
+            API Docs
           </Link>
 
           <Button variant="hero" asChild className="mt-4 w-full">
-            <Link href="/dashboard" onClick={() => setMenuOpen(false)}>
+            <Link href="/app" onClick={() => setMenuOpen(false)}>
               Start Planning
             </Link>
           </Button>

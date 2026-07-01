@@ -1,19 +1,19 @@
-# Clykur — SaaS Financial Intelligence Platform (2026 Edition)
+# LedgerOS — AI Financial Operating System (2026 Edition)
 
-Clykur is an AI-powered financial operating system designed for SaaS founders, startups, agencies, and investors. Built to feel as minimal, fast, and polished as Stripe, Linear, and Vercel, this application moves beyond basic calculator formulas to act as a core business planning suite.
+LedgerOS is an AI-powered financial operating system built for SaaS founders, startups, agencies, product teams, and investors. Designed with the speed, simplicity, and polish of Stripe, Linear, and Vercel, LedgerOS goes far beyond traditional SaaS calculators to become a complete financial planning, pricing, forecasting, and business intelligence platform.
 
 ## 🚀 Key Features
 
-- **Interactive What-If Simulator**: Instantly evaluate business changes (e.g., doubling user scale, +25% pricing expansions, 50% churn reduction, team payroll shifts) with immediate visual feedback across metrics.
-- **AI Financial Advisor**: An automated advisory algorithm checking gross margins, retention health, CAC ROI payback, and runway safety, with clean, actionable advice explaining _why_ suggestions are made.
-- **Pricing Tier Optimizer**: Generates customized plans (Starter, Pro, Business, Enterprise) optimized for target markets (Developers, SMBs, Mid-Markets, Enterprise) and desired profit margin thresholds.
-- **Cloud Cost Engine**: Calculates and compares real server compute, database system, global CDN bandwidth, and object storage configurations between AWS, GCP, Azure, Supabase/Vercel, Cloudflare, and Neon.
-- **Industry Preset Templates**: Preloads realistic assumptions for specialized verticals: AI SaaS, Developer Tools, B2B CRM, FinTech Platforms, and Marketplaces.
-- **Interactive Analytics Projections**: Beautiful interactive Recharts plotting 12-month compounding revenue projections, category expenses distributions, and cash bank runway trajectories.
-- **Gamified Health Score**: A live 0–100 SaaS health check index measuring margins, CAC conversion, churn rates, and growth efficiency, awarding badges like _Excellent Margins_ and _Investor Ready_.
-- **Command Palette (⌘K)**: A searchable keyboard command center to switch templates, run simulators, swap display currencies, and adjust parameters.
-- **SEO Landing Generators**: Dynamically loads indexable routes and JSON-LD schemas optimized for calculators (MRR, Runway, LTV, Unit Economics) to attract organic traffic.
-- **Smart Reports & CSV Exports**: Displays executive reports analyzing cash burn and pricing strategies, with immediate options to download raw CSV sheets.
+- **Interactive What-If Simulator**: Instantly model business scenarios such as user growth, pricing changes, churn reduction, hiring plans, and operating cost adjustments with real-time financial impact.
+- **AI Financial Advisor**: Continuously evaluates gross margins, CAC payback, retention, runway, profitability, and growth efficiency while providing actionable recommendations with clear explanations.
+- **Pricing Strategy Optimizer**: Generates optimized pricing tiers (Starter, Pro, Business, Enterprise) tailored for different customer segments and target profit margins.
+- **Cloud Infrastructure Cost Engine**: Compare compute, databases, storage, CDN, and bandwidth costs across AWS, Google Cloud, Azure, Cloudflare, Vercel, Supabase, Neon, and other cloud providers.
+- **Industry Templates**: Start with realistic financial assumptions for AI SaaS, Developer Tools, B2B SaaS, CRM Platforms, FinTech products, Marketplaces, and more.
+- **Financial Analytics Dashboard**: Interactive charts for MRR, ARR, revenue forecasting, expense breakdowns, cash flow, burn rate, and runway projections.
+- **SaaS Health Score**: A real-time 0–100 financial health index measuring profitability, growth, retention, capital efficiency, and unit economics while awarding badges such as *Investor Ready* and *Excellent Margins*.
+- **Command Palette (⌘K)**: Quickly navigate the platform, switch templates, update assumptions, change currencies, and access every feature from the keyboard.
+- **SEO Financial Calculators**: Automatically generates indexable calculator pages and structured data for MRR, ARR, LTV, CAC, Runway, Burn Rate, Unit Economics, and SaaS financial metrics.
+- **Executive Reports & CSV Export**: Generate investor-ready financial summaries, pricing analyses, and downloadable reports for further analysis.
 
 ---
 
@@ -21,54 +21,106 @@ Clykur is an AI-powered financial operating system designed for SaaS founders, s
 
 ```text
 src/
-├── app/                  # App Router pages, SEO paths, layout & sitemaps
+├── app/                         # Next.js App Router, layouts, SEO routes & metadata
 ├── components/
-│   ├── calc/
-│   │   ├── Dashboard.tsx # Core Dashboard layout, metric cards & tabs
-│   │   ├── CalcSlider.tsx # Reusable slider controls with tooltips
-│   │   ├── CfoAdvisor.tsx # AI Financial Advisor algorithm and insight cards
-│   │   ├── CompetitorIntelligence.tsx # Dynamic competitor tier simulation
-│   │   └── StartupTimeline.tsx # Compound growth milestones timeline
+│   ├── dashboard/
+│   │   ├── Dashboard.tsx        # Main financial dashboard
+│   │   ├── MetricCards.tsx      # KPI cards
+│   │   ├── FinancialCharts.tsx  # Revenue & projection charts
+│   │   ├── AIAdvisor.tsx        # AI recommendations
+│   │   ├── PricingOptimizer.tsx # Pricing optimization engine
+│   │   ├── CostEngine.tsx       # Cloud infrastructure calculator
+│   │   ├── ScenarioPlanner.tsx  # What-if simulator
+│   │   ├── HealthScore.tsx      # SaaS health scoring
+│   │   └── Reports.tsx          # Executive reports & exports
 │   ├── site/
-│   │   ├── Navbar.tsx    # Premium responsive header navigation & currency controls
-│   │   ├── CommandPalette.tsx # Searchable dashboard command palette (⌘K)
-│   │   └── LandingPages.tsx   # SEO templates, JSON-LD schemas & marketing copies
-│   └── ui/               # Modular UI primitives (Radix UI, styling components)
-├── hooks/                # LocalStorage synchronization & media query hooks
+│   │   ├── Navbar.tsx
+│   │   ├── CommandPalette.tsx
+│   │   └── LandingPages.tsx
+│   └── ui/                      # Shared UI components
+├── hooks/                       # Custom hooks
 ├── lib/
-│   ├── pricing.ts        # extended financial metrics, pricing presets & SaaS health math
-│   ├── utils.ts          # Tailwind CSS merge utilities
-│   └── lovable-error-reporting.ts # Localized application error capturing
+│   ├── financial-engine.ts      # Financial calculations
+│   ├── pricing-engine.ts        # Pricing optimization
+│   ├── cloud-costs.ts           # Infrastructure calculations
+│   ├── health-score.ts          # SaaS scoring algorithms
+│   ├── report-generator.ts      # Executive report generation
+│   └── utils.ts
+├── types/
+├── data/
+└── public/
 ```
 
 ---
 
-## 🛠️ Getting Started & Scripts
+## 🛠️ Getting Started
 
-In the project root, you can run:
+Install dependencies:
 
 ```bash
-# Start Next.js development server
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Open:
+
+```
+http://localhost:3000
+```
+
+---
+
+## 📜 Available Scripts
+
+```bash
+# Development
 npm run dev
 
-# Format code using Prettier
-npm run format
-
-# Run ESLint validation
-npm run lint
-
-# Compile and check TypeScript types
-npm run typecheck
-
-# Build optimizations for production
+# Production build
 npm run build
 
-# Verify build status (runs typecheck, lint, and build)
+# Start production server
+npm run start
+
+# Lint project
+npm run lint
+
+# Type checking
+npm run typecheck
+
+# Format code
+npm run format
+
+# Verify project
 npm run verify
 ```
 
 ---
 
-## 🔒 Platform Authentication Strategy
+## 🔒 Authentication & Data Strategy
 
-All core features, sliders, AI advice generation, cost comparisons, and report exports operate **completely client-side** in the browser with local storage persistence. Saving persistent workspaces, sharing reports, and cloud synchronization support mock signups to provide zero-friction experiences.
+LedgerOS is designed to deliver an instant, zero-friction experience.
+
+- Financial calculations execute entirely in the browser.
+- AI recommendations are generated from the user's current financial model.
+- Scenario simulations update instantly without page reloads.
+- Local storage automatically preserves workspace progress.
+- Users can explore the platform without creating an account.
+
+Authentication is only required for premium capabilities, including:
+
+- Saving multiple financial workspaces
+- Cloud synchronization across devices
+- Team collaboration
+- Report sharing
+- AI conversation history
+- Executive dashboard history
+- Organization management
+- Future integrations with accounting and payment platforms
+
+This approach allows users to experience the platform immediately while enabling seamless upgrades for long-term financial planning and collaboration.
